@@ -1,5 +1,6 @@
 # Import tkinter library for api
 import tkinter as tk
+import tkinter.scrolledtext as tksc
 
 # Define a test function to test the button
 def test_my_button():
@@ -15,7 +16,7 @@ def test_my_button():
 
 # Create a 600x300 window for the gui
 root = tk.Tk()
-root.wm_geometry("600x300")
+root.wm_geometry("400x300")
 
 # Set the title
 root.title('Authorization')
@@ -49,12 +50,18 @@ ent_password = tk.Entry(frame_login, bd=3, show='*')
 ent_password.pack(pady=5)
 
 # Add a button that a user can click to enter their details and login
-# When the button is pressed, switch it to a "new" frame
-button_login = tk.Button(frame_login, text='Log In', command=test_my_button)
+bt_image = tk.PhotoImage(file="button.gif") # Set the button image
+bt_image = bt_image.subsample(40,40)
+button_login = tk.Button(frame_login, text='Log In', command=test_my_button, image=bt_image)
 button_login.pack()
 
 # Bring login frame to the front
 frame_login.tkraise()
+
+# Add a scrolling text widget
+test_textbox = tksc.ScrolledText(frame_auth)
+test_textbox.configure(height=10, width=50, font='Times',background='Blue',foreground='white') # Configure the widget
+test_textbox.pack()
 
 # Keep the window persistent
 root.mainloop()
